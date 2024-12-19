@@ -14,7 +14,8 @@ const Guide: FC<GuideProps> = ({ sections }) => {
       <div className='flex justify-between items-center mx-auto py-4 container'>
         <button
           onClick={scrollToTop}
-          className='font-bold text-[#404040] text-3xl'
+          className='font-bold hover:text-zinc-900 text-3xl
+          bg-gradient-to-r from-blue-600 via-emerald-400 to-violet-500 inline-block text-transparent bg-clip-text'
         >
           Yosita
         </button>
@@ -25,7 +26,7 @@ const Guide: FC<GuideProps> = ({ sections }) => {
               onClick={() =>
                 section.ref.current?.scrollIntoView({ behavior: 'smooth' })
               }
-              className='ml-4 md:ml-12 font-semibold text-[#404040] text-md md:text-lg'
+              className='ml-4 md:ml-12 font-semibold text-zinc-700 hover:text-zinc-900 text-md md:text-lg'
             >
               {section.name}
             </button>
