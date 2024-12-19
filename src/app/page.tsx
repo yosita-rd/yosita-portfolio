@@ -78,27 +78,41 @@ export default function Home() {
         <p>Content for Projects section...</p>
         <div className='bg-black w-full h-screen'></div>
       </section>
+
+      {/* Contact */}
       <section ref={contactRef} id='contact' className='py-16'>
-        <h2>Contact</h2>
-        <p>Content for Contact section...</p>
-        <div className='bg-black w-full h-screen'></div>
+        <div className='bg-zinc-700 rounded-lg px-16 py-12 flex flex-col space-y-4 text-nowrap items-center'>
+          <h1 className='text-3xl font-semibold text-white'>Contact</h1>
+          <div className='grid grid-flow-row grid-cols-1 gap-2 text-white'>
+            <span className='font-medium'>
+              <i className='bi bi-envelope-fill mr-1 font-medium'></i> Email
+            </span>
+            <Link href={`mailto:yosita.rd@gmail.com`} passHref>
+              yosita.rd@gmail.com
+            </Link>
+            <span className='font-medium mt-4'>
+              <i className='bi bi-telephone-fill mr-1 font-medium'></i> Phone
+            </span>
+            <Link href={`callto:0850936599`} passHref>
+              085-093-6599
+            </Link>
+            <span className='font-medium mt-4'>
+              <i className='bi bi-line mr-1 font-medium'></i> Line
+            </span>
+            <Link href={`callto:0850936599`} passHref>
+              085-093-6599 (Add via phone number)
+            </Link>
+          </div>
+          <Link href='/yosita_resume.pdf' passHref>
+            <button className='bg-white hover:bg-white/80 px-4 py-2 rounded-lg font-medium text-zinc-900 text-md mt-4'>
+              Download Resume <i className='bi bi-download ml-2'></i>
+            </button>
+          </Link>
+        </div>
       </section>
     </main>
   );
 }
-
-const ButtonWithAnimation: React.FC = () => {
-  return (
-    <div className='flex justify-center items-center mx-auto w-full max-w-md'>
-      <div className='relative z-10 flex items-center p-[1.5px] border rounded-xl w-full cursor-pointer overflow-hidden'>
-        <div className='absolute inset-0 bg-[conic-gradient(#0ea5e9_20deg,transparent_120deg)] rounded-full w-full h-full animate-rotate'></div>
-        <div className='relative z-20 flex bg-white p-2 rounded-[0.60rem] w-full'>
-          Subscribe
-        </div>
-      </div>
-    </div>
-  );
-};
 
 const Button: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
