@@ -1,3 +1,6 @@
 export default function ExperiencePage() {
-  return <div className=""></div>;
+  return (
+    <main className="">
+    </main>
+  );
 }
