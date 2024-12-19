@@ -10,11 +10,11 @@ const Guide: FC<GuideProps> = ({ sections }) => {
   };
 
   return (
-    <nav className="top-0 left-0 z-10 fixed bg-white/20 w-full">
-      <div className="flex justify-between items-center mx-auto py-4 container">
+    <nav className='top-0 left-0 z-10 fixed bg-white/40 w-full'>
+      <div className='flex justify-between items-center mx-auto py-4 container'>
         <button
           onClick={scrollToTop}
-          className="font-bold text-[#404040] text-4xl"
+          className='font-bold text-[#404040] text-3xl'
         >
           Yosita
         </button>
@@ -25,7 +25,7 @@ const Guide: FC<GuideProps> = ({ sections }) => {
               onClick={() =>
                 section.ref.current?.scrollIntoView({ behavior: 'smooth' })
               }
-              className="ml-12 font-semibold text-[#404040] text-2xl"
+              className='ml-12 font-semibold text-[#404040] text-lg'
             >
               {section.name}
             </button>
