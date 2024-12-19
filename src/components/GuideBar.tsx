@@ -25,7 +25,7 @@ const Guide: FC<GuideProps> = ({ sections }) => {
               onClick={() =>
                 section.ref.current?.scrollIntoView({ behavior: 'smooth' })
               }
-              className='ml-12 font-semibold text-[#404040] text-lg'
+              className='ml-4 md:ml-12 font-semibold text-[#404040] text-md md:text-lg'
             >
               {section.name}
             </button>
