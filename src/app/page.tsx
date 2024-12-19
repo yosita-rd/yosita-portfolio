@@ -74,9 +74,10 @@ export default function Home() {
 
       {/* Projects */}
       <section ref={projectsRef} id='projects' className='py-16'>
-        <h2>Projects</h2>
-        <p>Content for Projects section...</p>
-        <div className='bg-black w-full h-screen'></div>
+        <h2 className='text-3xl font-semibold text-zinc-900'>
+          Projects Section
+        </h2>
+        <p>Coming Soon...</p>
       </section>
 
       {/* Contact */}
