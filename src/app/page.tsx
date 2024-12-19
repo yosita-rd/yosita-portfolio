@@ -63,6 +63,9 @@ export default function Home() {
               <Link href={`callto:0850936599`} passHref>
                 <i className='bi bi-telephone-fill text-zinc-500 hover:text-zinc-700 text-xl md:text-3xl'></i>
               </Link>
+              <Link href={`https://line.me/ti/p/kCRvPO9V9c`} passHref>
+                <i className='bi bi-line text-zinc-500 hover:text-zinc-700 text-xl md:text-3xl'></i>
+              </Link>
               <Link href={`https://github.com/yosita-rd`} passHref>
                 <i className='bi bi-github text-zinc-500 hover:text-zinc-700 text-xl md:text-3xl'></i>
               </Link>
