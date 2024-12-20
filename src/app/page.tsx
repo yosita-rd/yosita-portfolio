@@ -5,6 +5,7 @@ import Guide from '@/components/GuideBar';
 import { TextFade } from '@/components/TextFade';
 import Image from 'next/image';
 import Link from 'next/link';
+import Project from '../../public/data/project';
 
 export default function Home() {
   const aboutRef = useRef<HTMLElement | null>(null);
@@ -44,7 +45,7 @@ export default function Home() {
               <span className='mr-4 font-medium text-base md:text-lg italic'>
                 Hi, I'm
               </span>
-              <span className='font-bold text-xl md:text-3xl'>
+              <span className='font-bold text-xl md:text-3xl text-zinc-800'>
                 Yosita Rodwattanakul
               </span>
             </TextFade>
@@ -81,14 +82,26 @@ export default function Home() {
 
       {/* Projects */}
       <section ref={projectsRef} id='projects' className='py-16'>
-        <h2 className='text-3xl font-semibold text-zinc-900'>
-          Projects Section
-        </h2>
-        <p>Coming Soon...</p>
+        <h2 className='text-3xl font-semibold text-zinc-900'>Projects</h2>
+        <div className='grid grid-flow-row grid-cols-1 lg:grid-cols-2 gap-8 mt-8'>
+          {Project.map((project, i) => {
+            return (
+              <ProjectCard
+                key={i}
+                title={project.title}
+                date={project.date}
+                description={project.desc}
+                tags={project.tags}
+                tools={project.toolsIcon}
+                image={project.image}
+              />
+            );
+          })}
+        </div>
       </section>
 
       {/* Contact */}
-      <section ref={contactRef} id='contact' className='py-16'>
+      <section ref={contactRef} id='contact' className='py-12'>
         <div className='bg-zinc-700 rounded-lg px-16 py-12 flex flex-col space-y-4 text-nowrap items-center'>
           <h1 className='text-3xl font-semibold text-white'>Contact</h1>
           <div className='grid grid-flow-row grid-cols-1 gap-2 text-white'>
@@ -127,5 +140,60 @@ const Button: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     <button className='bg-zinc-700 hover:bg-zinc-900 px-4 py-2 rounded-full font-medium text-white text-base transition delay-300 hover:scale-105'>
       {children}
     </button>
+  );
+};
+
+const ProjectCard: React.FC<{
+  title: string;
+  date: string;
+  description: string;
+  tags: string[];
+  tools: string[];
+  image: string;
+}> = ({ title, date, description, tags, tools, image }) => {
+  return (
+    <div className='flex flex-col md:flex-row items-center md:items-start w-full rounded-xl'>
+      <div
+        className='bg-no-repeat bg-center bg-cover h-56 w-64 md:min-h-full rounded-t-xl md:rounded-l-xl shadow'
+        style={{ backgroundImage: `url(${image})` }}
+      ></div>
+      <div className='w-full md:w-4 h-4 md:h-full'></div>
+      {/* Details */}
+      <div className='flex-1 w-64 h-full shadow p-4 text-zinc-900 flex flex-col justify-between gap-6 rounded-b-xl md:rounded-r-xl'>
+        <div className='flex flex-col gap-2'>
+          <div className='flex flex-col mb-2 md:flex-row justify-between md:items-center'>
+            <h2 className='text-xl font-medium'>{title}</h2>
+            <p className='text-sm text-zinc-600'>{date}</p>
+          </div>
+          {tags.length > 0 && (
+            <div className='flex flex-row gap-2 items-center flex-wrap'>
+              {tags.map((tag, i) => (
+                <div
+                  key={i}
+                  className='px-2 py-0.5 rounded-full border border-zinc-700 text-sm text-zinc-700'
+                >
+                  {tag}
+                </div>
+              ))}
+            </div>
+          )}
+          <p className='text-sm text-justify text-zinc-600'>{description}</p>
+        </div>
+        {tools.length > 0 && (
+          <div className='flex flex-row gap-2 items-center place-self-end'>
+            {tools.map((tool, i) => (
+              <Image
+                key={i}
+                src={`/tools/${tool}.png`}
+                alt={tool}
+                width={1000}
+                height={1000}
+                className='h-6 w-fit'
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
   );
 };
