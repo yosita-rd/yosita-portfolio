@@ -11,11 +11,10 @@ const Guide: FC<GuideProps> = ({ sections }) => {
 
   return (
     <nav className='top-0 left-0 z-10 fixed bg-white/40 w-full'>
-      <div className='flex justify-between items-center mx-auto py-4 container'>
+      <div className='flex justify-between items-end mx-auto px-8 md:px-0 py-4 container'>
         <button
           onClick={scrollToTop}
-          className='font-bold hover:text-zinc-900 text-3xl
-          bg-gradient-to-r from-blue-600 via-emerald-400 to-violet-500 inline-block text-transparent bg-clip-text'
+          className='inline-block bg-clip-text bg-gradient-to-r from-blue-600 via-emerald-400 to-violet-500 font-bold text-3xl text-transparent hover:text-zinc-900'
         >
           Yosita
         </button>
@@ -26,7 +25,7 @@ const Guide: FC<GuideProps> = ({ sections }) => {
               onClick={() =>
                 section.ref.current?.scrollIntoView({ behavior: 'smooth' })
               }
-              className='ml-4 md:ml-12 font-semibold text-zinc-700 hover:text-zinc-900 text-md md:text-lg'
+              className='ml-4 md:ml-12 font-semibold text-md text-zinc-700 md:text-lg hover:text-zinc-900'
             >
               {section.name}
             </button>
