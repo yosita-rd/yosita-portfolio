@@ -7,7 +7,6 @@ This is the source code for Yosita's portfolio website, built with Next.js and T
 - [Installation](#installation)
 - [Development](#development)
 - [Build](#build)
-- [Lint](#lint)
 - [Folder Structure](#folder-structure)
 - [Technologies Used](#technologies-used)
 - [License](#license)
@@ -36,13 +35,6 @@ To build the project for production, run:
 npm run build
 ```
 
-## Lint
-
-To lint the code, run:
-
-```sh
-npm run lint
-```
 
 ## Folder Structure
 
@@ -69,3 +61,7 @@ tsconfig.json
 - [React](https://reactjs.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [TypeScript](https://www.typescriptlang.org/)
+
+## License
+
+This project is licensed under the MIT License.
