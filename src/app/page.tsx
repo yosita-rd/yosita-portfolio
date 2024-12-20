@@ -101,7 +101,7 @@ export default function Home() {
       </section>
 
       {/* Contact */}
-      <section ref={contactRef} id='contact' className='py-12 px-8 md:mx-0'>
+      <section ref={contactRef} id='contact' className='py-12 px-8 md:px-0'>
         <div className='bg-zinc-700 rounded-lg px-16 py-12 flex flex-col space-y-4 text-pretty md:text-nowrap items-center'>
           <h1 className='text-3xl font-semibold text-white'>Contact</h1>
           <div className='grid grid-flow-row grid-cols-1 gap-2 text-white'>
