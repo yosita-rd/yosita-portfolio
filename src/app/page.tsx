@@ -81,7 +81,7 @@ export default function Home() {
       </section>
 
       {/* Projects */}
-      <section ref={projectsRef} id='projects' className='py-16'>
+      <section ref={projectsRef} id='projects' className='py-16 px-8 md:px-0'>
         <h2 className='text-3xl font-semibold text-zinc-900'>Projects</h2>
         <div className='grid grid-flow-row grid-cols-1 lg:grid-cols-2 gap-8 mt-8'>
           {Project.map((project, i) => {
@@ -101,8 +101,8 @@ export default function Home() {
       </section>
 
       {/* Contact */}
-      <section ref={contactRef} id='contact' className='py-12'>
-        <div className='bg-zinc-700 rounded-lg px-16 py-12 flex flex-col space-y-4 text-nowrap items-center'>
+      <section ref={contactRef} id='contact' className='py-12 px-8 md:mx-0'>
+        <div className='bg-zinc-700 rounded-lg px-16 py-12 flex flex-col space-y-4 text-pretty md:text-nowrap items-center'>
           <h1 className='text-3xl font-semibold text-white'>Contact</h1>
           <div className='grid grid-flow-row grid-cols-1 gap-2 text-white'>
             <span className='font-medium'>
@@ -154,12 +154,12 @@ const ProjectCard: React.FC<{
   return (
     <div className='flex flex-col md:flex-row items-center md:items-start w-full rounded-xl'>
       <div
-        className='bg-no-repeat bg-center bg-cover h-56 w-64 md:min-h-full rounded-t-xl md:rounded-l-xl shadow'
+        className='bg-no-repeat bg-center bg-contain md:bg-cover h-56 w-full md:w-64 md:min-h-full rounded-t-xl md:rounded-l-xl shadow'
         style={{ backgroundImage: `url(${image})` }}
       ></div>
       <div className='w-full md:w-4 h-4 md:h-full'></div>
       {/* Details */}
-      <div className='flex-1 w-64 h-full shadow p-4 text-zinc-900 flex flex-col justify-between gap-6 rounded-b-xl md:rounded-r-xl'>
+      <div className='flex-1 w-full h-full shadow p-4 text-zinc-900 flex flex-col justify-between gap-6 rounded-b-xl md:rounded-r-xl'>
         <div className='flex flex-col gap-2'>
           <div className='flex flex-col mb-2 md:flex-row justify-between md:items-center'>
             <h2 className='text-xl font-medium'>{title}</h2>
