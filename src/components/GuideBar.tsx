@@ -1,39 +1,80 @@
-import { FC } from 'react';
+'use client';
 
-type GuideProps = {
-  sections: { name: string; ref: React.RefObject<HTMLElement | null> }[];
-};
+import { ArrowDown, Menu } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet';
 
-const Guide: FC<GuideProps> = ({ sections }) => {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+const sections = ['Experience', 'Projects', 'Skills', 'Education', 'Contact'];
 
+export default function Guide() {
   return (
-    <nav className='top-0 left-0 z-10 fixed bg-white/40 w-full'>
-      <div className='flex justify-between items-end mx-auto px-8 md:px-0 py-4 container'>
-        <button
-          onClick={scrollToTop}
-          className='inline-block bg-clip-text bg-gradient-to-r from-blue-600 via-emerald-400 to-violet-500 font-bold text-3xl text-transparent hover:text-zinc-900'
+    <header className="site-header">
+      <nav className="site-shell nav-inner" aria-label="Main navigation">
+        <a
+          href="#about"
+          className="wordmark"
+          aria-label="Yosita, back to introduction"
         >
-          Yosita
-        </button>
-        <div>
+          yosita<span>.</span>
+        </a>
+        <div className="nav-links">
           {sections.map((section) => (
-            <button
-              key={section.name}
-              onClick={() =>
-                section.ref.current?.scrollIntoView({ behavior: 'smooth' })
-              }
-              className='ml-4 md:ml-12 font-semibold text-md text-zinc-700 md:text-lg hover:text-zinc-900'
-            >
-              {section.name}
-            </button>
+            <a key={section} href={`#${section.toLowerCase()}`}>
+              {section}
+            </a>
           ))}
+          <Button asChild variant="outline" size="sm">
+            <a href="/yosita_resume.pdf" download>
+              Resume <ArrowDown data-icon="inline-end" aria-hidden="true" />
+            </a>
+          </Button>
         </div>
-      </div>
-    </nav>
+        <div className="mobile-navigation">
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="outline" size="sm" aria-label="Open navigation">
+                Menu <Menu data-icon="inline-end" aria-hidden="true" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent className="flex flex-col gap-8">
+              <SheetHeader>
+                <SheetTitle>Explore my portfolio</SheetTitle>
+                <SheetDescription>
+                  Experience, projects, and the person behind the code.
+                </SheetDescription>
+              </SheetHeader>
+              <nav
+                aria-label="Mobile navigation"
+                className="flex flex-col gap-3"
+              >
+                {sections.map((section) => (
+                  <SheetClose asChild key={section}>
+                    <Button asChild variant="ghost" className="justify-start">
+                      <a href={`#${section.toLowerCase()}`}>{section}</a>
+                    </Button>
+                  </SheetClose>
+                ))}
+              </nav>
+              <SheetClose asChild>
+                <Button asChild variant="outline">
+                  <a href="/yosita_resume.pdf" download>
+                    Download resume{' '}
+                    <ArrowDown data-icon="inline-end" aria-hidden="true" />
+                  </a>
+                </Button>
+              </SheetClose>
+            </SheetContent>
+          </Sheet>
+        </div>
+      </nav>
+    </header>
   );
-};
-
-export default Guide;
+}

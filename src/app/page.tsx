@@ -1,199 +1,265 @@
-'use client';
-
-import React, { useRef } from 'react';
-import Guide from '@/components/GuideBar';
-import { TextFade } from '@/components/TextFade';
 import Image from 'next/image';
-import Link from 'next/link';
-import Project from '../../public/data/project';
+import Guide from '@/components/GuideBar';
+import ProjectShowcase from '@/components/ProjectShowcase';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { ArrowDown, ArrowUpRight } from 'lucide-react';
 
-export default function Home() {
-  const aboutRef = useRef<HTMLElement | null>(null);
-  const projectsRef = useRef<HTMLElement | null>(null);
-  const contactRef = useRef<HTMLElement | null>(null);
+import { experiences, pinnedFirst } from '../../public/data/project';
 
-  const sections = [
-    { name: 'About', ref: aboutRef },
-    { name: 'Projects', ref: projectsRef },
-    { name: 'Contact', ref: contactRef },
-  ];
+const skills = [
+  {
+    name: 'Programming languages',
+    items: ['TypeScript', 'JavaScript', 'SQL', 'Java', 'C++'],
+  },
+  {
+    name: 'Backend',
+    items: ['Node.js', 'Express.js', 'RESTful APIs', 'Prisma ORM'],
+  },
+  {
+    name: 'Frontend',
+    items: ['React', 'Next.js', 'TanStack Query', 'Zod', 'Tailwind CSS'],
+  },
+  { name: 'Databases & DevOps', items: ['PostgreSQL', 'GitHub Actions'] },
+  {
+    name: 'Soft skills',
+    items: [
+      'Communication',
+      'Leadership',
+      'Collaboration',
+      'Requirement gathering',
+    ],
+  },
+];
 
+function Arrow() {
+  return <ArrowUpRight className="inline size-3" aria-hidden="true" />;
+}
+function SectionHeading({ title }: { title: string }) {
   return (
-    <main className='mx-auto container'>
-      {/* Guild Bar */}
-      <Guide sections={sections} />
-
-      {/* About */}
-      <section
-        ref={aboutRef}
-        id='about'
-        className='flex md:flex-row flex-col justify-between items-center mx-auto pt-32 pb-16 max-w-6xl'
-      >
-        <Image
-          src='/profile.jpg'
-          alt='Profile Picture'
-          className='rounded-full md:size-64 lg:size-80 size-48'
-          width={1080}
-          height={1080}
-        />
-        <div className='flex flex-col space-y-8 w-3/5'>
-          <div className='text-justify text-pretty text-sm text-zinc-600 md:text-base'>
-            <TextFade
-              direction='up'
-              className='flex md:flex-row flex-col justify-start items-start md:items-end mb-4'
-            >
-              <span className='mr-4 font-medium text-base md:text-lg italic'>
-                Hi, I'm
-              </span>
-              <span className='font-bold text-xl text-zinc-800 md:text-3xl'>
-                Yosita Rodwattanakul
-              </span>
-            </TextFade>
-            A passionate Computer Engineering student with a strong interest in
-            software development, design, and problem-solving. I excel in
-            collaborative environments and am eager to gain hands-on experience
-            through real-world projects. Currently, I am developing my skills in
-            frontend development and UX/UI design, with a focus on delivering
-            intuitive and visually compelling user experiences.
-          </div>
-          <div className='flex md:flex-row flex-col justify-between items-center md:space-x-4 space-y-8 md:space-y-0'>
-            <div className='flex flex-row space-x-8'>
-              <Link href={`mailto:yosita.rd@gmail.com`} passHref>
-                <i className='text-xl text-zinc-500 md:text-3xl hover:text-zinc-700 bi bi-envelope-fill'></i>
-              </Link>
-              <Link href={`callto:0850936599`} passHref>
-                <i className='text-xl text-zinc-500 md:text-3xl hover:text-zinc-700 bi bi-telephone-fill'></i>
-              </Link>
-              <Link href={`https://line.me/ti/p/kCRvPO9V9c`} passHref>
-                <i className='text-xl text-zinc-500 md:text-3xl hover:text-zinc-700 bi bi-line'></i>
-              </Link>
-              <Link href={`https://github.com/yosita-rd`} passHref>
-                <i className='text-xl text-zinc-500 md:text-3xl hover:text-zinc-700 bi bi-github'></i>
-              </Link>
-            </div>
-            <Link href='/yosita_resume.pdf' passHref>
-              <Button>
-                Download Resume <i className='ml-2 bi bi-download'></i>
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Projects */}
-      <section ref={projectsRef} id='projects' className='px-8 md:px-0 py-16'>
-        <h2 className='font-semibold text-3xl text-zinc-900'>Projects</h2>
-        <div className='gap-8 grid grid-cols-1 xl:grid-cols-2 grid-flow-row mt-8'>
-          {Project.map((project, i) => {
-            return (
-              <ProjectCard
-                key={i}
-                title={project.title}
-                date={project.date}
-                description={project.desc}
-                tags={project.tags}
-                tools={project.toolsIcon}
-                image={project.image}
-              />
-            );
-          })}
-        </div>
-      </section>
-
-      {/* Contact */}
-      <section ref={contactRef} id='contact' className='px-8 md:px-0 py-12'>
-        <div className='flex flex-col items-center space-y-4 bg-zinc-800 px-16 py-12 rounded-lg text-pretty md:text-nowrap'>
-          <h1 className='font-semibold text-3xl text-white'>Contact</h1>
-          <div className='gap-2 grid grid-cols-1 grid-flow-row text-white'>
-            <span className='font-medium'>
-              <i className='mr-1 font-medium bi bi-envelope-fill'></i> Email
-            </span>
-            <Link href={`mailto:yosita.rd@gmail.com`} passHref>
-              yosita.rd@gmail.com
-            </Link>
-            <span className='mt-4 font-medium'>
-              <i className='mr-1 font-medium bi bi-telephone-fill'></i> Phone
-            </span>
-            <Link href={`callto:0850936599`} passHref>
-              085-093-6599
-            </Link>
-            <span className='mt-4 font-medium'>
-              <i className='mr-1 font-medium bi bi-line'></i> Line
-            </span>
-            <Link href={`callto:0850936599`} passHref>
-              085-093-6599 (Add via phone number)
-            </Link>
-          </div>
-          <Link href='/yosita_resume.pdf' passHref>
-            <button className='bg-white hover:bg-white/80 mt-4 px-4 py-2 rounded-lg font-medium text-base text-zinc-900'>
-              Download Resume <i className='ml-2 bi bi-download'></i>
-            </button>
-          </Link>
-        </div>
-      </section>
-    </main>
+    <div className="section-heading">
+      <h2>{title}</h2>
+    </div>
   );
 }
 
-const Button: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export default function Home() {
   return (
-    <button className='bg-zinc-700 hover:bg-zinc-900 px-4 py-2 rounded-full font-medium text-base text-white transition delay-300 hover:scale-105'>
-      {children}
-    </button>
-  );
-};
-
-const ProjectCard: React.FC<{
-  title: string;
-  date: string;
-  description: string;
-  tags: string[];
-  tools: string[];
-  image: string;
-}> = ({ title, date, description, tags, tools, image }) => {
-  return (
-    <div className='flex md:flex-row flex-col items-center md:items-start rounded-xl w-full'>
-      <div
-        className='md:bg-cover bg-contain bg-no-repeat bg-center shadow rounded-t-xl md:rounded-tr-none md:rounded-bl-xl w-full md:w-64 h-56 md:min-h-full'
-        style={{ backgroundImage: `url(${image})` }}
-      ></div>
-      <div className='w-full md:w-4 h-2 md:h-full'></div>
-      {/* Details */}
-      <div className='flex flex-col flex-1 justify-between gap-6 shadow p-4 rounded-b-xl md:rounded-tr-xl md:rounded-bl-none w-full h-full text-zinc-900'>
-        <div className='flex flex-col gap-2'>
-          <div className='flex md:flex-row flex-col justify-between md:items-center mb-2'>
-            <h2 className='font-medium text-xl'>{title}</h2>
-            <p className='text-sm text-zinc-600'>{date}</p>
-          </div>
-          {tags.length > 0 && (
-            <div className='flex flex-row flex-wrap items-center gap-2'>
-              {tags.map((tag, i) => (
-                <div
-                  key={i}
-                  className='border-zinc-700 px-2 py-0.5 border rounded-full text-sm text-zinc-700'
-                >
-                  {tag}
-                </div>
-              ))}
+    <>
+      <a href="#main" className="skip-link">
+        Skip to content
+      </a>
+      <Guide />
+      <main id="main" className="site-shell">
+        <section id="about" className="hero" aria-labelledby="hero-title">
+          <div className="hero-copy">
+            <h1 id="hero-title">Yosita Rodwattanakul</h1>
+            <p className="hero-role">
+              Full-stack software development · Bangkok, Thailand
+            </p>
+            <p className="hero-description">
+              I’m a Computer Engineering student focused on full-stack software
+              development, with a strong foundation in frontend engineering. I’m
+              a fast learner who thrives in fast-paced teams building modern,
+              high-impact software solutions.
+            </p>
+            <div className="hero-actions">
+              <Button asChild size="lg">
+                <a href="#projects">
+                  Explore my work{' '}
+                  <ArrowDown data-icon="inline-end" aria-hidden="true" />
+                </a>
+              </Button>
+              <Button asChild variant="outline" size="lg">
+                <a href="/yosita_resume.pdf" download>
+                  Download resume{' '}
+                  <ArrowDown data-icon="inline-end" aria-hidden="true" />
+                </a>
+              </Button>
             </div>
-          )}
-          <p className='text-justify text-sm text-zinc-600'>{description}</p>
-        </div>
-        {tools.length > 0 && (
-          <div className='flex flex-row items-center gap-2 place-self-end'>
-            {tools.map((tool, i) => (
-              <Image
-                key={i}
-                src={`/tools/${tool}.png`}
-                alt={tool}
-                width={1000}
-                height={1000}
-                className='w-fit h-6'
-              />
+            <div className="hero-links">
+              <a
+                href="https://github.com/yosita-rd"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub <Arrow />
+              </a>
+              <span aria-hidden="true">/</span>
+              <a href="mailto:yosita.rd@gmail.com">
+                Email <Arrow />
+              </a>
+            </div>
+          </div>
+          <Image
+            src="/profile.jpg"
+            alt="Yosita Rodwattanakul"
+            width={480}
+            height={480}
+            priority
+            className="portrait"
+          />
+        </section>
+        <section id="experience" className="section" aria-label="Experience">
+          <SectionHeading title="Experience" />
+          <div className="experience-list">
+            {pinnedFirst(experiences).map((experience) => (
+              <article className="experience-row" key={experience.company}>
+                <div className="experience-meta">
+                  <span className="small-label">{experience.date}</span>
+                  {experience.pinned && (
+                    <Badge variant="secondary" className="mt-2 w-fit">
+                      Pinned
+                    </Badge>
+                  )}
+                </div>
+                <div className="experience-content">
+                  <h3>{experience.company}</h3>
+                  <p className="role">{experience.role}</p>
+                  <ul>
+                    {experience.points.map((point) => (
+                      <li key={point}>{point}</li>
+                    ))}
+                  </ul>
+                  <div className="tags">
+                    {experience.tags.map((tag) => (
+                      <Badge key={tag} variant="secondary">
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+              </article>
             ))}
           </div>
-        )}
-      </div>
-    </div>
+        </section>
+        <section id="projects" className="section" aria-label="Projects">
+          <SectionHeading title="Projects" />
+          <ProjectShowcase />
+        </section>
+        <section id="skills" className="section" aria-label="Skills and tools">
+          <SectionHeading title="Skills & strengths" />
+          <div className="skills-grid">
+            {skills.map((group) => (
+              <div className="skill-group" key={group.name}>
+                <h3>{group.name}</h3>
+                <div className="tags">
+                  {group.items.map((item) => (
+                    <Badge key={item} variant="secondary">
+                      {item}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="language-row">
+            <span className="eyebrow">Languages</span>
+            <p>
+              Thai <span>Native</span>
+            </p>
+            <p>
+              English <span>TOEIC 920</span>
+            </p>
+          </div>
+        </section>
+        <section
+          id="education"
+          className="section"
+          aria-label="Education and achievements"
+        >
+          <SectionHeading title="Education & achievements" />
+          <div className="beyond-grid">
+            <div>
+              <h3 className="column-heading">Education</h3>
+              <article className="education-item">
+                <span className="small-label">2023 — November 2026</span>
+                <h4>Chulalongkorn University</h4>
+                <p>
+                  Bachelor of Engineering
+                  <br />
+                  Computer Engineering and Digital Technology
+                </p>
+              </article>
+              <article className="education-item">
+                <span className="small-label">2020 — 2023</span>
+                <h4>Triamudom Suksa School</h4>
+                <p>High School</p>
+              </article>
+            </div>
+            <div>
+              <h3 className="column-heading">Leadership & achievements</h3>
+              <article className="achievement">
+                <span className="small-label">2025 · Leadership</span>
+                <h4>Vice President, FECamp Club</h4>
+                <p>
+                  Led the Public Relations and IT divisions and directed FEST
+                  and FECamp 19th, serving over 600 students combined.
+                </p>
+              </article>
+              <article className="achievement">
+                <span className="small-label">2025 · Semi-finalist</span>
+                <h4>Intania Case Competition</h4>
+                <p>
+                  Proposed a Cloud & AI-driven Urban Air Mobility solution for
+                  ICC Airways to improve operational efficiency and
+                  sustainability.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+        <section
+          id="contact"
+          className="contact-section"
+          aria-labelledby="contact-title"
+        >
+          <div>
+            <h2 id="contact-title">Contact</h2>
+            <p>
+              Feel free to reach out about software development opportunities or
+              projects.
+            </p>
+            <a className="contact-email" href="mailto:yosita.rd@gmail.com">
+              yosita.rd@gmail.com <Arrow />
+            </a>
+          </div>
+          <div className="contact-details">
+            <div>
+              <span className="small-label">Based in</span>
+              <p>Bangkok, Thailand</p>
+            </div>
+            <div>
+              <span className="small-label">Give me a call</span>
+              <a href="tel:+66850936599">
+                +66 85 093 6599 <Arrow />
+              </a>
+            </div>
+            <div>
+              <span className="small-label">Find me online</span>
+              <a
+                href="https://github.com/yosita-rd"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                github.com/yosita-rd <Arrow />
+              </a>
+            </div>
+            <Button asChild variant="outline" size="lg">
+              <a href="/yosita_resume.pdf" download>
+                Download resume{' '}
+                <ArrowDown data-icon="inline-end" aria-hidden="true" />
+              </a>
+            </Button>
+          </div>
+        </section>
+      </main>
+      <footer className="site-footer site-shell">
+        <p>© {new Date().getFullYear()} Yosita Rodwattanakul</p>
+        <a href="#about">
+          Back to top <span aria-hidden="true">↑</span>
+        </a>
+      </footer>
+    </>
   );
-};
+}

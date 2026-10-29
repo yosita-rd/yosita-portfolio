@@ -9,8 +9,16 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Yosita',
-  description: "Yosita's portfolio website",
+  title: 'Yosita Rodwattanakul | Full-Stack Software Developer',
+  description:
+    'Bangkok-based Computer Engineering student focused on full-stack software development. Explore my experience, projects, and skills across frontend, backend, and databases.',
+  openGraph: {
+    title: 'Yosita Rodwattanakul | Full-Stack Software Developer',
+    description:
+      'Yosita Rodwattanakul’s portfolio: full-stack software development, production projects, and experience across frontend, backend, and databases.',
+    type: 'website',
+    locale: 'en_US',
+  },
 };
 
 export default function RootLayout({

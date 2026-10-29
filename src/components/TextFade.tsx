@@ -1,5 +1,5 @@
 'use client';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView } from 'motion/react';
 import * as React from 'react';
 
 export function TextFade({
@@ -39,7 +39,7 @@ export function TextFade({
           <motion.div variants={FADE_DOWN}>{child}</motion.div>
         ) : (
           child
-        )
+        ),
       )}
     </motion.div>
   );
