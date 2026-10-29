@@ -21,11 +21,16 @@ export type ProjectEntry = {
 
 export type ExperienceEntry = {
   company: string;
+  logo?: string;
+  /** Use only to compensate for whitespace inside the source image. */
+  logoScale?: number;
   pinned: boolean;
   role: string;
   date: string;
   points: string[];
   tags: string[];
+  link?: string;
+  linkLabel?: string;
 };
 
 export function pinnedFirst<T extends { pinned: boolean }>(
@@ -80,7 +85,7 @@ export const projects: ProjectEntry[] = [
     tags: ['frontend', 'responsive', 'UX/UI'],
     tools: 'Next.js, React, Tailwind CSS, TypeScript, REST API',
     toolsIcon: ['nextjs', 'react', 'tailwind', 'typescript'],
-    link: '',
+    link: 'https://talent.cedt.community/',
     type: 'Web Dev',
     image: '/projects/friday_activity_system.png',
     pinned: true,
@@ -138,6 +143,7 @@ export const projects: ProjectEntry[] = [
 export const experiences: ExperienceEntry[] = [
   {
     company: 'ExxonMobil',
+    logo: '/companies/exxonmobil.svg',
     role: 'Application Developer Intern',
     date: 'June 2026 — November 2026',
     points: [
@@ -150,6 +156,10 @@ export const experiences: ExperienceEntry[] = [
   },
   {
     company: 'Cleverse Corporation CO., LTD.',
+    logo: '/companies/cleverse.png',
+    logoScale: 2,
+    link: 'https://www.aerogram.ai/',
+    linkLabel: 'Visit Aerogram',
     role: 'Frontend Developer Intern',
     date: 'June 2025 — July 2025',
     points: [
@@ -161,6 +171,7 @@ export const experiences: ExperienceEntry[] = [
   },
   {
     company: 'Obodroid Corporation Limited',
+    logo: '/companies/obodroid.png',
     role: 'Software Developer Intern',
     date: 'June 2024 — July 2024',
     points: [

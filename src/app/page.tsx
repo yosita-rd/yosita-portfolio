@@ -114,8 +114,38 @@ export default function Home() {
                   )}
                 </div>
                 <div className="experience-content">
-                  <h3>{experience.company}</h3>
-                  <p className="role">{experience.role}</p>
+                  <div className="experience-heading">
+                    {experience.logo && (
+                      <div className="company-logo">
+                        <Image
+                          src={experience.logo}
+                          alt={`${experience.company} logo`}
+                          width={112}
+                          height={64}
+                          style={{ transform: `scale(${experience.logoScale ?? 1})` }}
+                        />
+                      </div>
+                    )}
+                    <div>
+                      <h3>{experience.company}</h3>
+                      <p className="role">{experience.role}</p>
+                    </div>
+                  </div>
+                  {experience.link && (
+                    <Button asChild variant="link" className="mb-3 px-0">
+                      <a
+                        href={experience.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {experience.linkLabel || 'Visit website'}
+                        <ArrowUpRight
+                          data-icon="inline-end"
+                          aria-hidden="true"
+                        />
+                      </a>
+                    </Button>
+                  )}
                   <ul>
                     {experience.points.map((point) => (
                       <li key={point}>{point}</li>
@@ -191,7 +221,12 @@ export default function Home() {
               <h3 className="column-heading">Leadership & achievements</h3>
               <article className="achievement">
                 <span className="small-label">2025 · Leadership</span>
-                <h4>Vice President, FECamp Club</h4>
+                <h4>
+                  Vice President,{' '}
+                  <a href="https://www.instagram.com/fecampcu/" target="_blank" rel="noopener noreferrer" className="underline-offset-4 hover:underline">
+                    FECamp Club <Arrow />
+                  </a>
+                </h4>
                 <p>
                   Led the Public Relations and IT divisions and directed FEST
                   and FECamp 19th, serving over 600 students combined.
@@ -199,7 +234,11 @@ export default function Home() {
               </article>
               <article className="achievement">
                 <span className="small-label">2025 · Semi-finalist</span>
-                <h4>Intania Case Competition</h4>
+                <h4>
+                  <a href="https://cuicc.org/" target="_blank" rel="noopener noreferrer" className="underline-offset-4 hover:underline">
+                    Intania Case Competition <Arrow />
+                  </a>
+                </h4>
                 <p>
                   Proposed a Cloud & AI-driven Urban Air Mobility solution for
                   ICC Airways to improve operational efficiency and

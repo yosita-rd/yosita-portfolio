@@ -191,6 +191,32 @@ h1 {
   line-height: 1.5;
   margin-bottom: 3px;
 }
+.experience-heading {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+.experience-heading .role {
+  margin-bottom: 0;
+}
+.company-logo {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 112px;
+  height: 64px;
+  padding: 8px;
+  border: 1px solid hsl(var(--border));
+  border-radius: 6px;
+  background: white;
+}
+.company-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
 .role {
   color: hsl(var(--muted-foreground));
   margin-bottom: 12px;
